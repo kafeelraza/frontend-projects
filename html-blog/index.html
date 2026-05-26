@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>HTML Is Not What You Think</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=DM+Mono:wght@300;400;500&family=Lora:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet"/>
+
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<header>
+  <div class="masthead">
+    <h1 class="blog-title">HTML Is <em>Not</em><br>What You Think</h1>
+    <p class="subtitle">Vol. I &nbsp;·&nbsp; Web Foundations &nbsp;·&nbsp; May 2026</p>
+  </div>
+  <div class="header-rule">
+    <span></span>
+    By a Web Enthusiast &nbsp;·&nbsp; 8 min read &nbsp;·&nbsp; Beginner Friendly
+    <span></span>
+  </div>
+</header>
+
+<div class="two-col">
+
+  <article>
+
+    <div class="intro-drop">
+      <p class="intro-text">
+        <span class="drop-cap">W</span>hen most beginners hear the word "HTML," they immediately think about coding websites with tags like <code>&lt;h1&gt;</code>, <code>&lt;p&gt;</code>, and <code>&lt;div&gt;</code>. Many even assume HTML is a programming language. But the truth is very different. HTML is the foundation of the web itself — every website, from simple blogs to giant platforms like YouTube and Amazon, relies on HTML to structure content and communicate meaning.
+      </p>
+    </div>
+
+    <h2>What Is HTML?</h2>
+    <p>HTML stands for <strong>HyperText Markup Language</strong>. Let's break this down into its three core ideas:</p>
+
+    <h3>HyperText</h3>
+    <p>Text that connects to other text through links — the idea behind every hyperlink on the internet.</p>
+
+    <h3>Markup</h3>
+    <p>Adding labels or structure to content, so browsers know what each piece of information means.</p>
+
+    <h3>Language</h3>
+    <p>A standard set of rules and syntax understood universally by web browsers across the world.</p>
+
+    <div class="fact-box">
+      Unlike programming languages such as JavaScript or Python, HTML does not perform logic, calculations, or decision-making. It defines the <em>structure</em> and <em>meaning</em> of content.
+    </div>
+
+    <h2>HTML Is the Skeleton of a Website</h2>
+    <p>A website can be compared to the human body — each technology plays a distinct role:</p>
+
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr><th>Technology</th><th>Purpose</th></tr>
+        </thead>
+        <tbody>
+          <tr><td><code>HTML</code></td><td>Skeleton / Structure</td></tr>
+          <tr><td><code>CSS</code></td><td>Appearance / Styling</td></tr>
+          <tr><td><code>JavaScript</code></td><td>Behavior / Interactivity</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <p>Without HTML, a website would have no organization. Browsers would not know which text is a heading, where images should appear, or what belongs in navigation.</p>
+
+    <h2>Basic Structure of an HTML Document</h2>
+    <p>Every HTML page follows a fundamental structure. Here is the classic "Hello World" example:</p>
+
+    <pre><code>&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+  &lt;head&gt;
+    &lt;title&gt;My Webpage&lt;/title&gt;
+  &lt;/head&gt;
+
+  &lt;body&gt;
+    &lt;h1&gt;Hello World&lt;/h1&gt;
+    &lt;p&gt;This is my first webpage.&lt;/p&gt;
+  &lt;/body&gt;
+&lt;/html&gt;</code></pre>
+
+    <div class="section-rule">✦ important tags ✦</div>
+
+    <h2>Important HTML Tags Explained</h2>
+
+    <h3><code>&lt;!DOCTYPE html&gt;</code></h3>
+    <p>Tells the browser: <em>"This document uses HTML5."</em> It ensures the page renders correctly across all modern browsers.</p>
+
+    <h3><code>&lt;html&gt;</code></h3>
+    <p>The root element. Every single piece of your webpage lives inside this tag.</p>
+
+    <h3><code>&lt;head&gt;</code></h3>
+    <p>Contains information about the webpage that users don't directly see — titles, meta tags, CSS links, fonts, and scripts.</p>
+
+    <h3><code>&lt;body&gt;</code></h3>
+    <p>Everything visible on screen goes here. Text, images, buttons, videos — all inside <code>&lt;body&gt;</code>.</p>
+
+    <h2>Heading Tags</h2>
+    <p>HTML provides six heading levels, from <code>&lt;h1&gt;</code> (most important) to <code>&lt;h6&gt;</code> (least important):</p>
+
+    <pre><code>&lt;h1&gt;Main Heading&lt;/h1&gt;
+&lt;h2&gt;Sub Heading&lt;/h2&gt;
+&lt;h3&gt;Smaller Heading&lt;/h3&gt;</code></pre>
+
+    <p>Heading tags organize content, improve readability, help search engines understand page structure, and directly impact SEO. A webpage should usually contain only <strong>one</strong> <code>&lt;h1&gt;</code>.</p>
+
+    <h2>Links & Images</h2>
+
+    <h3>Anchor Tag <code>&lt;a&gt;</code></h3>
+    <p>The anchor tag creates hyperlinks — the very foundation of the internet's interconnected nature.</p>
+    <pre><code>&lt;a href="https://example.com"&gt;Visit Website&lt;/a&gt;</code></pre>
+
+    <h3>Image Tag <code>&lt;img&gt;</code></h3>
+    <p>Used to display images. The <code>alt</code> attribute provides alternative text for screen readers and improves SEO:</p>
+    <pre><code>&lt;img src="image.jpg" alt="A beautiful landscape"&gt;</code></pre>
+
+    <div class="section-rule">✦ modern html ✦</div>
+
+    <h2>Semantic HTML</h2>
+    <p>Modern HTML gives meaning to webpage structure instead of relying on generic <code>&lt;div&gt;</code> containers everywhere.</p>
+
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr><th>Semantic Tag</th><th>Purpose</th></tr>
+        </thead>
+        <tbody>
+          <tr><td><code>&lt;header&gt;</code></td><td>Top section of a page</td></tr>
+          <tr><td><code>&lt;nav&gt;</code></td><td>Navigation menu</td></tr>
+          <tr><td><code>&lt;main&gt;</code></td><td>Primary content</td></tr>
+          <tr><td><code>&lt;section&gt;</code></td><td>Content section</td></tr>
+          <tr><td><code>&lt;article&gt;</code></td><td>Independent content</td></tr>
+          <tr><td><code>&lt;footer&gt;</code></td><td>Bottom section</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <pre><code>&lt;header&gt;&lt;h1&gt;My Blog&lt;/h1&gt;&lt;/header&gt;
+
+&lt;nav&gt;&lt;a href="#"&gt;Home&lt;/a&gt;&lt;/nav&gt;
+
+&lt;main&gt;
+  &lt;section&gt;
+    &lt;article&gt;
+      &lt;h2&gt;HTML Basics&lt;/h2&gt;
+    &lt;/article&gt;
+  &lt;/section&gt;
+&lt;/main&gt;
+
+&lt;footer&gt;Copyright 2026&lt;/footer&gt;</code></pre>
+
+    <h2>Why Semantic HTML Matters</h2>
+    <p>Semantic HTML improves three critical areas of web development:</p>
+    <ul>
+      <li><strong>SEO</strong> — Search engines better understand your content structure</li>
+      <li><strong>Accessibility</strong> — Screen readers can interpret pages far more effectively</li>
+      <li><strong>Code Readability</strong> — Developers understand structure at a glance</li>
+    </ul>
+
+    <h2>Forms in HTML</h2>
+    <p>Forms collect user input and power login pages, signups, search bars, and contact forms:</p>
+
+    <pre><code>&lt;form&gt;
+  &lt;input type="text" placeholder="Enter Name"&gt;
+  &lt;button&gt;Submit&lt;/button&gt;
+&lt;/form&gt;</code></pre>
+
+    <div class="section-rule">✦ clearing myths ✦</div>
+
+    <h2>Common Misconceptions</h2>
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr><th>Misconception</th><th>Reality</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>HTML is programming</td><td>HTML is markup — it defines structure</td></tr>
+          <tr><td>HTML creates design</td><td>CSS handles all styling</td></tr>
+          <tr><td>HTML adds functionality</td><td>JavaScript handles interaction</td></tr>
+          <tr><td>HTML is outdated</td><td>HTML5 powers modern web apps today</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h2>Conclusion</h2>
+    <p>HTML may appear simple at first glance, but it is one of the most important technologies ever created. It structures content, improves accessibility, supports SEO, and allows browsers to understand webpages correctly.</p>
+    <p>Without HTML, the internet as we know it would not exist.</p>
+
+    <div class="pullquote">
+      HTML is not about making websites beautiful. It is about making websites <strong>understandable</strong>.
+    </div>
+
+  </article>
+
+  <aside>
+
+    <div class="sidebar-box">
+      <div class="number-stat">
+        <div class="big">30+</div>
+        <div class="label">Years of HTML</div>
+      </div>
+    </div>
+
+    <div class="sidebar-box">
+      <h4>In This Article</h4>
+      <ul>
+        <li><a href="#">What is HTML?</a></li>
+        <li><a href="#">Basic Structure</a></li>
+        <li><a href="#">Important Tags</a></li>
+        <li><a href="#">Semantic HTML</a></li>
+        <li><a href="#">Forms & Tables</a></li>
+        <li><a href="#">Common Myths</a></li>
+      </ul>
+    </div>
+
+    <div class="sidebar-box">
+      <h4>Key Tags</h4>
+      <div class="tag-cloud">
+        <span class="tag">&lt;html&gt;</span>
+        <span class="tag">&lt;head&gt;</span>
+        <span class="tag">&lt;body&gt;</span>
+        <span class="tag">&lt;h1&gt;</span>
+        <span class="tag">&lt;p&gt;</span>
+        <span class="tag">&lt;a&gt;</span>
+        <span class="tag">&lt;img&gt;</span>
+        <span class="tag">&lt;div&gt;</span>
+        <span class="tag">&lt;nav&gt;</span>
+        <span class="tag">&lt;main&gt;</span>
+        <span class="tag">&lt;footer&gt;</span>
+        <span class="tag">&lt;form&gt;</span>
+      </div>
+    </div>
+
+    <div class="sidebar-box">
+      <h4>Did You Know?</h4>
+      <p style="font-size:0.78rem; color: var(--muted); line-height:1.6;">
+        The first version of HTML was proposed by Tim Berners-Lee in 1991. It had only 18 tags. HTML5, released in 2014, now has over 100.
+      </p>
+    </div>
+
+  </aside>
+
+</div>
+
+<footer>
+  <p>DIGITAL CODEX &nbsp;·&nbsp; HTML FOUNDATIONS &nbsp;·&nbsp; © 2026</p>
+  <p style="margin-top:0.5rem; opacity:0.6;">Written with care. Structured with HTML. Styled with CSS.</p>
+</footer>
+
+</body>
+</html>
