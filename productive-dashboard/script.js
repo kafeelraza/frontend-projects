@@ -86,7 +86,7 @@ const CONFIG = {
   },
   api: {
     weather: "https://api.open-meteo.com/v1/forecast",
-    quotes: "https://api.quotable.io/random",
+    quotes: "https://dummyjson.com/quotes/random",
     weatherTimeout: 5000,
     quoteTimeout: 5000
   },
@@ -218,6 +218,7 @@ function init() {
   renderAll();
   updateClock();
   fetchWeatherData();
+  setRandomQuote();
   setInterval(updateClock, CONFIG.animation.clockUpdate);
   setInterval(tickTimer, CONFIG.animation.timerTick);
 }
