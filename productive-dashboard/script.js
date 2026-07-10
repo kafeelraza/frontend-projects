@@ -87,8 +87,8 @@ const CONFIG = {
   api: {
     weather: "https://api.open-meteo.com/v1/forecast",
     quotes: "https://api.quotable.io/random",
-    weatherTimeout: 1500,
-    quoteTimeout: 1200
+    weatherTimeout: 5000,
+    quoteTimeout: 5000
   },
   weather: {
     defaultLat: 28.35,
@@ -546,24 +546,24 @@ function deleteGoal(id) {
 async function setRandomQuote() {
   if (!CONFIG.features.enableQuotes) return;
 
-  const previousText = state.quote.text;
-  state.quote = getLocalQuote(previousText);
-  writeStorage(storageKeys.quote, state.quote);
+  const previousQuote = state.quote;
+  state.quote = { text: "Loading quote from API...", author: "Please wait" };
   renderQuote(true);
 
   try {
     const data = await fetchJsonWithTimeout(CONFIG.api.quotes, CONFIG.api.quoteTimeout);
-    const apiQuote = {
-      text: data.content || data.quote || state.quote.text,
+    state.quote = {
+      text: data.content || data.quote || previousQuote.text,
       author: data.author || "Unknown"
     };
-    if (apiQuote.text && apiQuote.text !== state.quote.text) {
-      state.quote = apiQuote;
-      writeStorage(storageKeys.quote, state.quote);
-      renderQuote(true);
-    }
+    writeStorage(storageKeys.quote, state.quote);
+    renderQuote(true);
   } catch {
-    // Local quote is already visible, so failed network requests stay invisible to the user.
+    state.quote = {
+      text: "Could not load a live quote right now. Keep going anyway.",
+      author: "Network fallback"
+    };
+    renderQuote(true);
   }
 }
 
@@ -584,7 +584,7 @@ function renderQuote(animate = false) {
 
 async function fetchWeatherData() {
   if (!CONFIG.features.enableWeather) return;
-  renderWeather(readStorage(storageKeys.weatherCache, null));
+  renderWeather(null, "Loading live weather...");
 
   const params = new URLSearchParams({
     latitude: CONFIG.weather.defaultLat,
@@ -606,24 +606,16 @@ async function fetchWeatherData() {
     writeStorage(storageKeys.weatherCache, weather);
     renderWeather(weather);
   } catch {
-    renderWeather(readStorage(storageKeys.weatherCache, null));
+    renderWeather(readStorage(storageKeys.weatherCache, null), "Could not load live weather. Showing saved/sample data.");
   }
 }
 
-function getLocalQuote(currentText) {
-  let quote = quotes[Math.floor(Math.random() * quotes.length)];
-  while (quotes.length > 1 && quote.text === currentText) {
-    quote = quotes[Math.floor(Math.random() * quotes.length)];
-  }
-  return quote;
-}
-
-function renderWeather(weather) {
+function renderWeather(weather, statusText = "") {
   const data = weather || { temp: 24, humidity: 42, wind: 9, rain: "0.0" };
   els.homeWeatherTemp.textContent = `${data.temp}\u00b0C`;
   els.weatherTemp.textContent = `${data.temp}\u00b0C`;
-  els.homeWeatherMeta.textContent = `${data.rain} mm rain - ${data.wind} km/h wind`;
-  els.weatherDetails.textContent = `Humidity ${data.humidity}% - wind ${data.wind} km/h - rain ${data.rain} mm`;
+  els.homeWeatherMeta.textContent = statusText || `${data.rain} mm rain - ${data.wind} km/h wind`;
+  els.weatherDetails.textContent = statusText || `Humidity ${data.humidity}% - wind ${data.wind} km/h - rain ${data.rain} mm - API data`;
 }
 
 async function fetchJsonWithTimeout(url, timeout) {
