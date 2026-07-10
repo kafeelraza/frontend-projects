@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Productive Dashboard</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="sky-scene" aria-hidden="true">
+    <div class="orb sun"></div>
+    <div class="orb moon"></div>
+    <div class="cloud cloud-a"></div>
+    <div class="cloud cloud-b"></div>
+    <div class="stars"></div>
+    <div class="particles"></div>
+  </div>
+
+  <button class="theme-toggle" id="themeToggle" type="button" aria-label="Toggle theme">
+    <span class="toggle-icon"></span>
+    <span id="themeLabel">Dark</span>
+  </button>
+
+  <div class="mini-timer hidden" id="miniTimer" role="status">
+    <span class="mini-pulse"></span>
+    <span id="miniTimerText">25:00</span>
+  </div>
+
+  <main class="app-shell">
+    <section class="view home-view active" id="homeView" aria-label="Dashboard home">
+      <div class="hero-grid">
+        <article class="hero-panel glass">
+          <p class="eyebrow">Personal command center</p>
+          <h1 id="greetingText">Good day</h1>
+          <div class="time-row">
+            <span id="liveTime">00:00</span>
+            <span id="liveDate">Loading date</span>
+          </div>
+          <blockquote id="homeQuote">Small steps compound into visible confidence.</blockquote>
+          <button class="primary-action" id="newHomeQuote" type="button">New Quote</button>
+        </article>
+
+        <aside class="status-stack">
+          <article class="status-card weather-card glass" data-open="weather">
+            <div class="weather-icon" aria-hidden="true">
+              <span class="weather-sun"></span>
+              <span class="weather-cloud"></span>
+            </div>
+            <div>
+              <p class="eyebrow">Weather</p>
+              <h2 id="homeWeatherTemp">24&deg;C</h2>
+              <p class="muted"><span id="weatherLocation">Bareilly, UP</span> &middot; <span id="homeWeatherMeta">18% rain &middot; soft breeze</span></p>
+            </div>
+          </article>
+
+          <article class="status-card alert-card glass" id="upcomingCard">
+            <p class="eyebrow" id="upcomingLabel">Next Alert</p>
+            <h2 id="upcomingTitle">No urgent item</h2>
+            <p class="muted" id="upcomingMeta">Your system is clear for now.</p>
+          </article>
+
+          <article class="status-card glass">
+            <p class="eyebrow">Daily Goals</p>
+            <h2 id="homeGoalPercent">0%</h2>
+            <div class="linear-progress"><span id="homeGoalBar"></span></div>
+          </article>
+        </aside>
+      </div>
+
+      <section class="feature-section" aria-label="Open features">
+        <div class="section-heading">
+          <p class="eyebrow">Open a workspace</p>
+          <h2>Choose your next mode</h2>
+        </div>
+        <div class="feature-grid">
+          <button class="feature-card glass" type="button" data-open="todos">
+            <span class="feature-icon">T</span>
+            <strong>Todo List</strong>
+            <small>Add priorities, due times, completion states, and alerts.</small>
+          </button>
+          <button class="feature-card glass" type="button" data-open="planner">
+            <span class="feature-icon">P</span>
+            <strong>Daily Planner</strong>
+            <small>Build time blocks and mark schedule items complete.</small>
+          </button>
+          <button class="feature-card glass" type="button" data-open="pomodoro">
+            <span class="feature-icon">F</span>
+            <strong>Pomodoro Timer</strong>
+            <small>Run 25/5 focus cycles with a circular progress ring.</small>
+          </button>
+          <button class="feature-card glass" type="button" data-open="goals">
+            <span class="feature-icon">G</span>
+            <strong>Daily Goals</strong>
+            <small>Track completion and see progress from the dashboard.</small>
+          </button>
+          <button class="feature-card glass" type="button" data-open="quotes">
+            <span class="feature-icon">Q</span>
+            <strong>Motivation Quotes</strong>
+            <small>Refresh your mindset with saved rotating prompts.</small>
+          </button>
+          <button class="feature-card glass" type="button" data-open="weather">
+            <span class="feature-icon">W</span>
+            <strong>Weather</strong>
+            <small>Sample forecast styled to match the time of day.</small>
+          </button>
+        </div>
+      </section>
+    </section>
+
+    <section class="view feature-view" id="featureView" aria-live="polite">
+      <header class="feature-topbar glass">
+        <button class="back-button" id="backButton" type="button">Back to Dashboard</button>
+        <div>
+          <p class="eyebrow" id="featureKicker">Workspace</p>
+          <h1 id="featureTitle">Feature</h1>
+        </div>
+      </header>
+
+      <div class="feature-content glass" id="todosPanel" data-panel="todos">
+        <div class="panel-heading">
+          <div>
+            <p class="eyebrow">Tasks</p>
+            <h2>Todo List</h2>
+          </div>
+          <span class="pill" id="todoStats">0 tasks</span>
+        </div>
+        <form class="task-form" id="todoForm">
+          <input id="todoInput" type="text" placeholder="Add a task..." autocomplete="off" />
+          <select id="todoPriority" aria-label="Priority">
+            <option>Low</option>
+            <option selected>Medium</option>
+            <option>High</option>
+          </select>
+          <input id="todoDue" type="time" aria-label="Due time" />
+          <button class="primary-action" type="submit">Add Task</button>
+        </form>
+        <ul class="item-list" id="todoList"></ul>
+      </div>
+
+      <div class="feature-content glass" id="plannerPanel" data-panel="planner">
+        <div class="panel-heading">
+          <div>
+            <p class="eyebrow">Schedule</p>
+            <h2>Daily Planner</h2>
+          </div>
+          <span class="pill" id="plannerStats">0 blocks</span>
+        </div>
+        <form class="task-form" id="plannerForm">
+          <input id="plannerTime" type="time" aria-label="Start time" required />
+          <input id="plannerTitle" type="text" placeholder="Schedule block..." autocomplete="off" required />
+          <button class="primary-action" type="submit">Add Block</button>
+        </form>
+        <div class="timeline" id="plannerList"></div>
+      </div>
+
+      <div class="feature-content glass pomodoro-layout" id="pomodoroPanel" data-panel="pomodoro">
+        <div>
+          <p class="eyebrow">Focus Cycle</p>
+          <h2 id="timerMode">Focus Session</h2>
+          <p class="muted">A premium 25/5 rhythm for deep work and real breaks.</p>
+        </div>
+        <div class="timer-ring" id="timerRing" style="--progress: 0deg">
+          <div class="timer-inner">
+            <span id="timerDisplay">25:00</span>
+            <small id="timerStatus">Ready</small>
+          </div>
+        </div>
+        <div class="button-row">
+          <button class="primary-action" id="startTimer" type="button">Start</button>
+          <button class="ghost-button" id="pauseTimer" type="button">Pause</button>
+          <button class="ghost-button" id="resetTimer" type="button">Reset</button>
+        </div>
+      </div>
+
+      <div class="feature-content glass" id="goalsPanel" data-panel="goals">
+        <div class="panel-heading">
+          <div>
+            <p class="eyebrow">Progress</p>
+            <h2>Daily Goals</h2>
+          </div>
+          <span class="pill" id="goalStats">0%</span>
+        </div>
+        <form class="task-form" id="goalForm">
+          <input id="goalInput" type="text" placeholder="Add a daily goal..." autocomplete="off" />
+          <button class="primary-action" type="submit">Add Goal</button>
+        </form>
+        <div class="goal-progress">
+          <span id="goalPercent">0%</span>
+          <div class="linear-progress"><span id="goalBar"></span></div>
+        </div>
+        <ul class="item-list" id="goalList"></ul>
+      </div>
+
+      <div class="feature-content glass quote-workspace" id="quotesPanel" data-panel="quotes">
+        <p class="eyebrow">Mindset</p>
+        <blockquote id="quoteText">Small steps compound into visible confidence.</blockquote>
+        <cite id="quoteAuthor">Productive Dashboard</cite>
+        <button class="primary-action" id="shuffleQuote" type="button">New Quote</button>
+      </div>
+
+      <div class="feature-content glass weather-workspace" id="weatherPanel" data-panel="weather">
+        <div class="weather-big-icon" aria-hidden="true">
+          <span class="weather-sun"></span>
+          <span class="weather-cloud"></span>
+        </div>
+        <div>
+          <p class="eyebrow">Sample Forecast</p>
+          <h2 id="weatherTitle">Clear and focused</h2>
+          <p class="weather-temp" id="weatherTemp">24&deg;C</p>
+          <p class="muted" id="weatherDetails">Feels like 25&deg;C &middot; humidity 42% &middot; wind 9 km/h &middot; visibility excellent</p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <nav class="bottom-nav glass" aria-label="Mobile feature navigation">
+    <button type="button" data-open="todos">Todo</button>
+    <button type="button" data-open="planner">Plan</button>
+    <button type="button" data-open="pomodoro">Focus</button>
+    <button type="button" data-open="goals">Goals</button>
+  </nav>
+
+  <script src="script.js"></script>
+</body>
+</html>
