@@ -1,0 +1,87 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  background: #0d0d0d;
+  color: #f7f7f7;
+  font-family: "DM Sans", sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5 {
+  font-family: "Syne", sans-serif;
+}
+
+::-webkit-scrollbar {
+  width: 4px;
+  height: 4px;
+}
+
+::-webkit-scrollbar-track {
+  background: #1a1a1a;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #333;
+  border-radius: 999px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #c8f400;
+}
+
+@layer components {
+  .field {
+    @apply w-full rounded-xl border border-white/10 bg-white/5 px-4 py-2.5 text-sm text-white outline-none transition-all placeholder:text-white/30 focus:border-volt focus:bg-white/10 focus:ring-2 focus:ring-volt/20;
+  }
+
+  .btn-volt {
+    @apply rounded-xl bg-volt font-semibold text-ink transition-all hover:bg-[#e2ff66] active:scale-95 disabled:cursor-not-allowed disabled:opacity-50;
+  }
+
+  .btn-ghost {
+    @apply rounded-xl border border-white/15 text-white/70 transition-all hover:border-white/30 hover:text-white active:scale-95;
+  }
+
+  .auth-card {
+    @apply rounded-2xl border border-white/10 bg-surface shadow-2xl;
+  }
+
+  .product-card {
+    @apply cursor-pointer overflow-hidden rounded-2xl border border-white/10 bg-surface transition-all duration-300 hover:-translate-y-1 hover:border-volt/60 hover:shadow-[0_8px_32px_rgba(200,244,0,.08)];
+  }
+
+  .badge {
+    @apply inline-flex items-center rounded-full px-2.5 py-1 text-xs font-medium;
+  }
+
+  .skeleton {
+    background: linear-gradient(90deg, #1a1a1a 25%, #252525, #1a1a1a 75%);
+    background-size: 200% 100%;
+    animation: shimmer 2s linear infinite;
+  }
+}
+
+@keyframes shimmer {
+  0% {
+    background-position: -200% 0;
+  }
+  100% {
+    background-position: 200% 0;
+  }
+}

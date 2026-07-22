@@ -1,0 +1,15 @@
+node_modules/
+dist/
+.npm-cache/
+.vercel-cache/
+.vercel-data/
+.vercel-config/
+.appdata/
+.localappdata/
+.env
+.env.*
+!.env.example
+work/
+outputs/
+work_parse_products.js
+*.log
